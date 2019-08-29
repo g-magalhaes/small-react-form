@@ -8,6 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button'
 import { Typography } from '@material-ui/core';
+import {Link} from 'react-router-dom'
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,6 +43,8 @@ const TableHeader = () => {
     )
 }
 
+const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
+
 const TableRows = props => {
 
     const classes = useStyles();
@@ -56,7 +60,7 @@ const TableRows = props => {
                 <TableCell align="right">{row.carbs}</TableCell>
                 <TableCell align="right">{row.protein}</TableCell>
                 <TableCell align="right">
-                <Button variant="contained"size="medium">
+                <Button variant="contained" size="medium" component={AdapterLink} to={"/list/"+row.name} onClick="">
                     Edit
                 </Button>
                 </TableCell>

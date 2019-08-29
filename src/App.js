@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     paddingLeft: `calc(${drawerWidth}% + 4%)`,
     paddingTop: '2%',
-    width: '90%',
+    width: '95%',
   },
 }));
 
