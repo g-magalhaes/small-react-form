@@ -17,9 +17,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import AddIcon from '@material-ui/icons/Add';
-import {Switch, Route, Link} from 'react-router-dom'
-import DataList from './DataList'
-
+import {Switch, Route, Link} from 'react-router-dom';
+import DataList from './DataList';
+import TaskForm from './TaskForm';
 
 const drawerWidth = 20;
 
@@ -76,6 +76,8 @@ function App() {
     )
   }
   
+
+  const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
   const DrawBar = () => {
     const classes = useStyles();
     const theme = useTheme();
@@ -94,13 +96,11 @@ function App() {
       </div>
       <Divider />
       <List>
-        {['New Record', 'List'].map((text, index) => (
-          <ListItem button key={text}>
+        {[ {name:'New Record',endpoint:'/add/'}, {name:'List', endpoint:'/List/'}].map((dict, index) => (
+          <ListItem button key={dict.name} component={AdapterLink} to={dict.endpoint}>
             <ListItemIcon>{index % 2 === 0 ? <AddIcon /> : <ListAltIcon />}</ListItemIcon>
             <ListItemText> 
-                <Link to="/list">
-                    {text}
-                </Link>
+                {dict.name}
             </ListItemText> 
           </ListItem>
         ))}
@@ -119,7 +119,9 @@ function App() {
       <Switch>
         {/*<Route exact path='/' component={Home}/>*/}
         <Route path='/list' component={DataList}/>
-        {/*<Route path='/add' component={Insert}/>*/}
+        <Route path='/add/:id' component={TaskForm} />
+        <Route exact path='/add' component={TaskForm}/>
+      
       </Switch>
     </main>
      )
