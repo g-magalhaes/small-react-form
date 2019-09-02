@@ -69,7 +69,6 @@ function App() {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Lab
           </Typography>
         </Toolbar>
       </AppBar>
